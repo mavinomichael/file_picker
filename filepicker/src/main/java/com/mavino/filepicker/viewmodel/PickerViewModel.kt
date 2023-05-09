@@ -10,7 +10,7 @@ class PickerViewModel @Inject constructor(
     private val videoPicker: VideoPicker
 ): ViewModel() {
 
-    fun pickVideo(){
-
+    fun loadVideo(): MutableList<String>{
+       return videoPicker.getVideos()
     }
 }

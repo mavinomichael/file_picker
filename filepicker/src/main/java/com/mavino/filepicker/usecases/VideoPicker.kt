@@ -11,8 +11,10 @@ constructor(
     val context: Context
 ) {
     private val filesPaths = mutableListOf<String>()
+    private var page = 1
+    private val pageSize = 20
 
-    fun getVideos(page: Int, pageSize: Int){
+    fun getVideos(): MutableList<String>{
         var pageCount = page
         val projection = arrayOf(MediaStore.Video.Media.DATA, MediaStore.Video.Media.DATE_TAKEN)
         val selection = "${MediaStore.Video.Media.SIZE} > 0"
@@ -37,5 +39,6 @@ constructor(
             it.close()
             pageCount++
         }
+        return filesPaths
     }
 }
