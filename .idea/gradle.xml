@@ -11,7 +11,12 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/dependencyprovider" />
+            <option value="$PROJECT_DIR$/core/feature-api" />
             <option value="$PROJECT_DIR$/filepicker" />
+            <option value="$PROJECT_DIR$/filepicker/filepicker-api" />
+            <option value="$PROJECT_DIR$/filepicker/filepicker-impl" />
           </set>
         </option>
       </GradleProjectSettings>

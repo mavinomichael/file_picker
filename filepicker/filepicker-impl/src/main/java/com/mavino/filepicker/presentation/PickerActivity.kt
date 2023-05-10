@@ -40,7 +40,7 @@ class PickerActivity : ComponentActivity() {
         checkPermissions()
         setContent {
             FilePickerTheme {
-                pickerContent(paths = pickerViewModel.loadVideo())
+                PickerContent(paths = pickerViewModel.loadVideo())
             }
         }
     }
@@ -75,24 +75,7 @@ class PickerActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-//@Composable
-//fun content(){
-//    Scaffold(
-//        content = {
-//            PickerContent()
-//        }
-//    )
-//}
-
-@Composable
-fun pickerContent(paths: MutableList<String>){
+fun PickerContent(paths: MutableList<String>){
     LazyColumn(
         contentPadding = PaddingValues( horizontal = 16.dp, vertical = 8.dp)
     ){
@@ -109,12 +92,4 @@ fun PickerImage(path: String){
         painter = rememberImagePainter(path),
         contentDescription = ""
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FilePickerTheme {
-        Greeting("Android")
-    }
 }
