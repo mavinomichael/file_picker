@@ -3,44 +3,46 @@ package com.mavino.filepicker
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.insets.ProvideWindowInsets
+import com.mavino.filepicker.navigation.AppNavGraph
 import com.mavino.filepicker.ui.theme.FilePickerTheme
+import com.mavino.filepicker.ui.theme.Pink80
+import com.mavino.filepicker.viewmodel.MainViewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.provideImpl()
+
         setContent {
-            FilePickerTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+            AppContent()
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FilePickerTheme {
-        Greeting("Android")
+fun AppContent() {
+    ProvideWindowInsets {
+        FilePickerTheme() {
+            val navController = rememberNavController()
+            Scaffold(
+                backgroundColor = Pink80,
+            ) { innerPaddingModifier ->
+                AppNavGraph(
+                    navController = navController,
+                    modifier = Modifier.padding(innerPaddingModifier)
+                )
+            }
+        }
     }
 }

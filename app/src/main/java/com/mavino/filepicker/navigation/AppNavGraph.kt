@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
+import com.mavino.dependencyprovider.DependencyProvider
 import com.mavino.feature_api.register
 import com.mavino.filepicker_api.FilePickerApi
 import javax.inject.Inject
@@ -12,19 +13,18 @@ import javax.inject.Inject
 @Inject
 fun AppNavGraph(
     modifier: Modifier = Modifier,
-    navController: NavHostController,
-    pickerApi: FilePickerApi
+    navController: NavHostController
 ) {
 
     NavHost(
         navController = navController,
-        startDestination = pickerApi.pickerRoute
+        startDestination = DependencyProvider.filePicker().pickerRoute
     ){
 
-//        register(
-//            ,
-//            navController = navController,
-//            modifier = modifier
-//        )
+        register(
+            DependencyProvider.filePicker(),
+            navController = navController,
+            modifier = modifier
+        )
     }
 }
